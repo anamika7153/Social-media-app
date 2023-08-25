@@ -2,9 +2,16 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser');
+
+const usersRoutes = require('./routes/users');
 
 // Create an Express app
 const app = express();
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 MONGO_URI = process.env.MONGO_URI;
 
@@ -20,6 +27,9 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
   });
+
+  // Use routes
+app.use( '/api/users', usersRoutes);
 
 
 // Start the server
