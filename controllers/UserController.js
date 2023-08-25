@@ -16,8 +16,18 @@ exports.signup = async (req, res) => {
     // check if user already exists
     let user;
     user = await User.findOne({ $or: [{ username }, { email }] });
+
     if (user) {
-      return res.status(400).json({ msg: "User already exixts" });
+      if (user.username === username) {
+        return res.status(400).json({ message: "Username is already taken" });
+      }
+      if (user.email === email) {
+        return res
+          .status(400)
+          .json({
+            message: "There is already an account associated with this email",
+          });
+      }
     }
     user = new User({
       username,
@@ -32,7 +42,7 @@ exports.signup = async (req, res) => {
     user.password = await bcrypt.hash(password, salt);
     await user.save();
 
-    res.status(200).json({ msg: "User registered successfully!" });
+    res.status(200).json({ message: "User registered successfully!" });
   } catch (error) {
     console.log(error.mesaage);
   }
@@ -64,5 +74,25 @@ exports.signin = async (req, res) => {
   } catch (error) {
     console.log(error.mesaage);
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.getUserProfile = async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.findOne({ username }).select("-password");
+    const getUser = {
+      username: user.username,
+      fullName: user.fullName,
+      email: user.email,
+    };
+    if (!user) {
+      return res.status(404).json({ mesaage: "User not found" });
+    }
+    res.json(getUser);
+  } catch (error) {
+    console.log(error.mesaage);
+    res.status(500).json({ message: "Server Error" });
   }
 };
