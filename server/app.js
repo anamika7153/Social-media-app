@@ -3,11 +3,20 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import the cors middleware
 
 const usersRoutes = require('./routes/users');
 
 // Create an Express app
 const app = express();
+
+app.use(cors())
+
+
+// app.use(cors({
+//   origin: 'http://localhost:3000', // Update with your frontend URL
+//   credentials: true, // Allow sending cookies with the request
+// }));
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
