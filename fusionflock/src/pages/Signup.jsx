@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import axios for API calls
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios for API calls
 
-const API_URL = 'http://localhost:5000/api'; // Update with your backend URL
+const API_URL = "http://localhost:5000/api"; // Update with your backend URL
 
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
-    fullName: '',
-    email: '',
-    password: '',
+    username: "",
+    fullName: "",
+    email: "",
+    password: "",
   });
+
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,22 +25,37 @@ const Signup = () => {
 
     try {
       const response = await axios.post(`${API_URL}/users/signup`, formData);
-      console.log('Signup successful:', response.data); // Replace with your desired action
+      // console.log('Signup successful:', response.data);
 
-      // Redirect to the signin page or any other route
-      navigate('/api/users/signin');
+      navigate("/api/users/signin");
     } catch (error) {
-      console.error('Error during signup:', error);
+      if (
+        error.response &&
+        error.response.data &&
+        (error.response.data.message || error.response.data.errors)
+      ) {
+        setError(
+          error.response.data.message
+            ? error.response.data.message
+            : error.response.data.errors[0].msg
+        );
+      } else {
+        console.error("Error during signup:", error);
+      }
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 relative top-[-3rem]">
+      <div className="bg-white dark:bg-gray-500 shadow-md w-3/4 sm:w-1/2 md:w-2/5 rounded px-8 pt-6 pb-8 mb-4">
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="username"
+            >
               Username
             </label>
             <input
@@ -52,7 +69,10 @@ const Signup = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fullName">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="fullName"
+            >
               Full Name
             </label>
             <input
@@ -66,7 +86,10 @@ const Signup = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
@@ -80,7 +103,10 @@ const Signup = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
