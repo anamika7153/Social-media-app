@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 
+JWT_SECRET = process.env.JWT_SECRET
+
 exports.signup = async (req, res) => {
   const { username, fullName, email, password } = req.body;
 
@@ -50,15 +52,23 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   const { username, password } = req.body;
+  if (!username) {
+    return res.status(400).json({ message: "Username is required" });
+  }
+
+  if (!password) {
+    return res.status(400).json({ message: "Password is required" });
+  }
 
   try {
-    let user = await User.findOne({ username });
-    if (!user) {
-      returnres.status(400).json({ message: "User not found" });
+    let user;
+    user = await User.findOne({ username });
+    if (!user ) {
+      return res.status(400).json({ message: "User not found" });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Incorrect Password" });
     }
     // Create JWT payload
     const payload = {
@@ -67,12 +77,12 @@ exports.signin = async (req, res) => {
       },
     };
     // Generate JWT
-    jwt.sign(payload, "yourSecretKey", { expiresIn: 3600 }, (err, token) => {
+    jwt.sign(payload, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
       if (err) throw err;
-      res.json({ message: "Signed in successfully!", token });
+      res.json({ message: "Signed in successfully!", token,user });
     });
   } catch (error) {
-    console.log(error.mesaage);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
