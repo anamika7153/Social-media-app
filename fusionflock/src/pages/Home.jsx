@@ -1,25 +1,16 @@
-import React, {useContext} from 'react'
-// import { UserContext } from '../App';
+import React, {useContext, useEffect, useState} from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
 
 const Home = () => {
-  // const { state, dispatch } = useContext(UserContext);
+
+  const user = useSelector((state) => state.user);
+  const username = user.username;
 
   return (
     <div>
       home
-
-      {/* <button
-            type="submit"
-            // className="logout-btn btn waves-effect hoverable"
-            onClick={() => {
-              localStorage.clear();
-              dispatch({ type: "CLEAR" });
-              // history.push("/login");
-
-            }}
-          >
-            LogOut
-          </button> */}
     </div>
   )
 }

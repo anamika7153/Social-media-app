@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 import { setLogin } from "../state";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios for API calls
+import axios from "axios";
 import { useDispatch } from "react-redux";
 
 const API_URL = "http://localhost:5000/api"; // Update with your backend URL

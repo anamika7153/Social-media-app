@@ -87,6 +87,19 @@ exports.signin = async (req, res) => {
   }
 };
 
+exports.getAllUsers = async (req, res) => {
+  // console.log("hi")
+
+  try {
+    const users = await User.find().select("-password");
+    console.log("usersss",users)
+    res.json(users);
+  } catch (error) {
+    console.log(error.mesaage);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
 exports.getUserProfile = async (req, res) => {
   const { username } = req.params;
 
