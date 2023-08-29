@@ -32,7 +32,7 @@ const Avatar = () => {
       <div className="absolute top-15 right-[4px] hidden group-hover:block hover:block ease-in w-[160px]">
         <div className="py-2"></div>
         <ul className="text-gray-900 dark:text-dimWhite bg-gray-300 dark:bg-secondary px-3 py-4 rounded font-light text-sm">
-          <Link to="/profile">
+          <Link to={`/api/users/${user.username}`}>
             <li className=" text-gray-900 hover:underline dark:text-dimWhite dark:hover:text-white px-4 py-2 rounded">
               Your Profile
             </li>

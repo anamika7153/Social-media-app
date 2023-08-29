@@ -2,10 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import "./App.css";
+import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
-import Navbar from "./components/Navbar";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const [Theme, setTheme] = useState(null);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/api/users/signup" element={<Signup />}></Route>
         <Route path="/api/users/signin" element={<Signin />}></Route>
+        <Route path="/api/users/:username" element={<UserProfile />}></Route>
       </Routes>
     </BrowserRouter>
   );
