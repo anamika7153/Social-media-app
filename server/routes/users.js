@@ -37,6 +37,8 @@ router.post('/signin', userController.signin);
 
 router.get('/allusers', userController.getAllUsers);
 
+router.put('/:Username/:userId/update', userController.updateProfile)
+
 router.get('/:username', userController.getUserProfile);
 
 module.exports = router;
