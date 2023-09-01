@@ -37,8 +37,10 @@ router.post('/signin', userController.signin);
 
 router.get('/allusers', userController.getAllUsers);
 
+// update user info
 router.put('/:Username/:userId/update', userController.updateProfile)
 
+//get user
 router.get('/:username', userController.getUserProfile);
 
 module.exports = router;
