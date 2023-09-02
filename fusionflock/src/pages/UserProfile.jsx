@@ -39,12 +39,12 @@ const UserProfile = () => {
       // console.log("response",response)
       // console.log("response.data",response.data)
       // console.log("response.data.user",response.data.user)
-      if(response.statusText === 'OK') {
+      if (response.statusText === "OK") {
         dispatch(
-            setLogin({
-              user: response.data.targetUser,
-            })
-          );
+          setLogin({
+            user: response.data.targetUser,
+          })
+        );
       }
       console.log("Profile updated:", response.data); // Replace with your desired action
     } catch (error) {

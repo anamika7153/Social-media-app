@@ -30,12 +30,12 @@ export const authSlice = createSlice({
       }
     },
     setFollowings: (state, action) => {
-        if (state.user) {
-          state.user.followings = action.payload.followings;
-        } else {
-          console.error("user followings non-existent :(");
-        }
-      },
+      if (state.user) {
+        state.user.followings = action.payload.followings;
+      } else {
+        console.error("user followings non-existent :(");
+      }
+    },
     setPosts: (state, action) => {
       state.posts = action.payload.posts;
     },
