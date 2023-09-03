@@ -66,7 +66,7 @@ const UserProfile = () => {
         className="w-full bg-gray-100 dark:bg-gray-900"
       >
         <div className="min-h-full flex  mx-auto items-center justify-end">
-          <div className="flex flex-col p-6 items-center justify-center bg-white text-black dark:text-dimWhite dark:bg-gray-500 shadow-md rounded-md h-1/2 w-1/3  mx-auto">
+          <div className="flex flex-col p-8 items-center justify-center bg-white text-black dark:text-dimWhite dark:bg-gray-500 shadow-md rounded-md h-1/2 w-1/3  mx-auto">
             <h2 className="my-4">Update Profile</h2>
             <div className="w-[150px] h-[150px] flex items-center">
               <img
@@ -76,47 +76,55 @@ const UserProfile = () => {
                 loading="lazy"
               />
             </div>
-            <label htmlFor="username" className="">
-              Username
-            </label>
-            <input
-              value={data.username}
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Enter Username"
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-            <label htmlFor="fullName" className="">
-              Full Name
-            </label>
-            <input
-              value={data.fullName}
-              type="text"
-              id="fullName"
-              name="fullName"
-              placeholder="Enter Username"
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-            <label htmlFor="email" className="">
-              Email
-            </label>
-            <input
-              value={data.email}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter email"
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-            {/* <h3 className="mt-8">{data.username}</h3>
-            <h3 className="mt-2">{data.fullName}</h3>
-            <h3 className="mt-2">{data.email}</h3> */}
+            <div className="flex flex-col w-full">
+              <div className="mb-4 flex flex-col">
+                <label htmlFor="username" className="">
+                  Username
+                </label>
+                <input
+                  className="rounded opacity-70 mt-2"
+                  value={data.username}
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Enter Username"
+                  onChange={handleChange}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+              <div className="mb-4 flex flex-col">
+                <label htmlFor="fullName" className="">
+                  Full Name
+                </label>
+                <input
+                  className="rounded opacity-70 mt-2"
+                  value={data.fullName}
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Enter Username"
+                  onChange={handleChange}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+              <div className="mb-4 flex flex-col">
+                <label htmlFor="email" className="">
+                  Email
+                </label>
+                <input
+                  className="rounded opacity-70 mt-2"
+                  value={data.email}
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter email"
+                  onChange={handleChange}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+            </div>
             <button
-              className="text-black rounded focus:outline-none"
+              className="text-black rounded focus:outline-none bg-blue-700 w-full mt-3 p-2 text-lg"
               onClick={handleSubmit}
             >
               Update
