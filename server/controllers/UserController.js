@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 
+
 JWT_SECRET = process.env.JWT_SECRET;
 
 exports.signup = async (req, res) => {
@@ -90,7 +91,7 @@ exports.getAllUsers = async (req, res) => {
 
   try {
     const users = await User.find().select("-password");
-    console.log("usersss", users);
+    // console.log("usersss", users);
     res.json(users);
   } catch (error) {
     console.log(error.mesaage);

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
 
+const authenticate = require('../middlewares/authenticate')
+
 const userController = require("../controllers/UserController");
 
 router.post(
@@ -35,12 +37,12 @@ router.post(
 
 router.post('/signin', userController.signin);
 
-router.get('/allusers', userController.getAllUsers);
+router.get('/allusers', authenticate, userController.getAllUsers);
 
 // update user info
 router.put('/:Username/:userId/update', userController.updateProfile)
 
 //get user
-router.get('/:username', userController.getUserProfile);
+router.get('/:username', authenticate, userController.getUserProfile);
 
 module.exports = router;
