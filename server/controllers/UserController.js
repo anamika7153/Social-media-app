@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
+const Post = require("../models/Post");
 
 
 JWT_SECRET = process.env.JWT_SECRET;
@@ -159,3 +160,22 @@ exports.updateProfile = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+exports.createPost = async (req,res) => {
+  try {
+    const {caption} = req.body;
+    const author = req.user._id;
+    const newPost = new Post({
+      caption,
+      author: req.user,
+    });
+
+    const savedPost = await newPost.save();
+    console.log(savedPost);
+    res.status(201).json(savedPost)
+
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message: "Internal server error"})
+  }
+}

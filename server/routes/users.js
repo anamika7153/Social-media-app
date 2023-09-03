@@ -45,4 +45,6 @@ router.put('/:Username/:userId/update', userController.updateProfile)
 //get user
 router.get('/:username', authenticate, userController.getUserProfile);
 
+router.post('/createpost', authenticate, userController.createPost);
+
 module.exports = router;
