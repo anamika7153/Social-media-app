@@ -1,3 +1,8 @@
+// import dotenv from 'dotenv';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// import firebase from 'firebase/app';
+// import 'firebase/storage';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -30,6 +35,8 @@ const store = configureStore({
       },
     }),
 });
+
+
 
 
 
