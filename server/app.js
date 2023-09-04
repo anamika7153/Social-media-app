@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors'); // Import the cors middleware
 
 const usersRoutes = require('./routes/users');
+const postRoutes = require('./routes/posts')
 
 // Create an Express app
 const app = express();
@@ -39,6 +40,7 @@ mongoose
 
   // Use routes
 app.use( '/api/users', usersRoutes);
+app.use( '/api/posts', postRoutes);
 
 
 // Start the server
