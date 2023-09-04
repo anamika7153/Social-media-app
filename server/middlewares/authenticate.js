@@ -23,7 +23,7 @@ const authenticate = (req, res, next) => {
     // console.log("id",{payload})
     User.findById(userId).then((userData) => {
       req.user = userData;
-    //   console.log(req.user);
+      //   console.log(req.user);
       next();
     });
   });

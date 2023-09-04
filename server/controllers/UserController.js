@@ -2,8 +2,6 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
-const Post = require("../models/Post");
-
 
 JWT_SECRET = process.env.JWT_SECRET;
 
@@ -160,4 +158,3 @@ exports.updateProfile = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
