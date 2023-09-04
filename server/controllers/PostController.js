@@ -18,28 +18,28 @@ exports.createpost = async (req, res) => {
   }
 };
 
-exports.getAllPosts = async (req,res) => {
+exports.getAllPosts = async (req, res) => {
   try {
     const allposts = await Post.find();
-    if(!allposts) {
-      return res.json(404).json({message: "No post found!"});
+    if (!allposts) {
+      return res.json(404).json({ message: "No post found!" });
     }
     res.json(allposts);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-exports.getPost= async (req,res) => {
+exports.getPost = async (req, res) => {
   try {
-    const {postId} = req.params;
-    const post = await Post.findById(postId)
+    const { postId } = req.params;
+    const post = await Post.findById(postId);
 
-    if(!post) {
-      return res.json(404).json({message: "Post not found!"});
+    if (!post) {
+      return res.json(404).json({ message: "Post not found!" });
     }
     res.json(post);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
