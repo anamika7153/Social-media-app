@@ -25,8 +25,8 @@ router.post(
   postController.createpost
 );
 
-router.get('/allposts', postController.getAllPosts);
+router.get('/allposts', authenticate, postController.getAllPosts);
 
-router.get('/:postId', postController.getPost);
+router.get('/:postId', authenticate, postController.getPost);
 
 module.exports = router;
