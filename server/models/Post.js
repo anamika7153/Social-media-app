@@ -1,14 +1,9 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-  // filename: {
-  //   type: String,
-  //   required: true,
-  // },
-  // imageUrl: {
-  //   type: String,
-  //   required: true,
-  // },
+  image: {
+    type: String, // Store the image URL from Cloudinary
+  },
   caption: {
     type: String,
     required: true,
