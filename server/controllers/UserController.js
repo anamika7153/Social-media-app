@@ -161,21 +161,3 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-exports.createPost = async (req,res) => {
-  try {
-    const {caption} = req.body;
-    const author = req.user._id;
-    const newPost = new Post({
-      caption,
-      author: req.user,
-    });
-
-    const savedPost = await newPost.save();
-    console.log(savedPost);
-    res.status(201).json(savedPost)
-
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({message: "Internal server error"})
-  }
-}
