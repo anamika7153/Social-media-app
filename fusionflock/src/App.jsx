@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import UserProfile from "./pages/UserProfile";
+import CreatePostPage from "./pages/CreatePost";
 
 function App() {
   const [Theme, setTheme] = useState(null);
@@ -39,6 +40,7 @@ function App() {
         <Route path="/api/users/signup" element={<Signup />}></Route>
         <Route path="/api/users/signin" element={<Signin />}></Route>
         <Route path="/api/users/:username" element={<UserProfile />}></Route>
+        <Route path="/api/posts/createpost" element={<CreatePostPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
