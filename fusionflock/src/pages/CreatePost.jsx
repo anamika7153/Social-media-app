@@ -53,7 +53,7 @@ const CreatePostPage = () => {
       ) {
         setError(error.response);
       } else {
-        console.error("Error during signin:", error);
+        console.error("Error during creating post:", error);
       }
     }
   };
