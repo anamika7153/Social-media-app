@@ -1,21 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-// import { useUserAuth } from "../../context/authContext";
 import avatar from "../../assets/avatar.png";
 import { setLogout } from "../../state";
 
 const Avatar = () => {
-  //   const { user, logout } = useUserAuth();
-
-  //   const handleLogout = async () => {
-  //     try {
-  //       await logout();
-  //     } catch (err) {
-  //       return err.message
-  //     }
-  //   };
+  
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -44,7 +34,6 @@ const Avatar = () => {
           </Link>
           <hr className="border-primary my-2" />
           <li className="hover:bg-gray-200 dark:text-dimWhite dark:hover:bg-primary text-gray-900 dark:hover:text-white px-4 py-2 rounded">
-            {/* <button onClick={handleLogout}>Log out</button> */}
             <button onClick={() => dispatch(setLogout())}>Log out</button>
           </li>
         </ul>
